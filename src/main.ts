@@ -16,8 +16,32 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
-  SwaggerModule.setup('/', app, document);
+  SwaggerModule.setup('api', app, document, {
+    customfavIcon: 'https://petstore.swagger.io/favicon-32x32.png',
+    customCssUrl:
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.css',
+    customJs: [
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.js',
+    ],
+    swaggerOptions: {
+      deepLinking: false, // Disables `#` in URLs
+      defaultModelsExpandDepth: -1, // Hides schemas/models section
+    },
+  });
+  SwaggerModule.setup('/', app, document, {
+    customfavIcon: 'https://petstore.swagger.io/favicon-32x32.png',
+    customCssUrl:
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.css',
+    customJs: [
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.js',
+    ],
+    swaggerOptions: {
+      deepLinking: false, // Disables `#` in URLs
+      defaultModelsExpandDepth: -1, // Hides schemas/models section
+    },
+  });
 
   const PORT = process.env.PORT;
   await app.listen(PORT ?? 3000);
