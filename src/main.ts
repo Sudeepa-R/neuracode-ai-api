@@ -15,6 +15,7 @@ async function bootstrap() {
     .addTag('Controllers')
     .addBearerAuth()
     .build();
+  
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document, {
     customfavIcon: 'https://petstore.swagger.io/favicon-32x32.png',
