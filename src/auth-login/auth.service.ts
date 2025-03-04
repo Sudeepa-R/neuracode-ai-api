@@ -1,0 +1,15 @@
+import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { access } from 'fs';
+import { userAuthVm } from 'src/view-model/userLogin.vm';
+
+@Injectable()
+export class AuthService {
+  constructor(private readonly jwtService: JwtService) {}
+  async login(user: userAuthVm) {
+    const payload = { userName: user.userName, sub: user.password };
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
+  }
+}
