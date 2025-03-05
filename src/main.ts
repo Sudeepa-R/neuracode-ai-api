@@ -19,7 +19,12 @@ async function bootstrap() {
       }),
     );
 
-    app.use(compression());
+    app.use(
+      compression({
+        threshold: 1024, // Compress responses only if size > 1KB
+        level: 6, // Compression level (0-9, higher means better compression)
+      }),
+    );
 
     const config = new DocumentBuilder()
       .setTitle('NeuraCode AI API')
