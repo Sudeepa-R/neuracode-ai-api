@@ -4,7 +4,7 @@ import { config } from 'dotenv';
 import { Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import rateLimit from 'express-rate-limit';
-// import * as compression from 'compression';
+import * as compression from 'compression';
 config();
 
 async function bootstrap() {
@@ -19,12 +19,12 @@ async function bootstrap() {
       }),
     );
 
-    // app.use(
-    //   compression({
-    //     threshold: 1024, // Compress responses only if size > 1KB
-    //     level: 6, // Compression level (0-9, higher means better compression)
-    //   }),
-    // );
+    app.use(
+      compression({
+        threshold: 1024, // Compress responses only if size > 1KB
+        level: 6, // Compression level (0-9, higher means better compression)
+      }),
+    );
 
     const config = new DocumentBuilder()
       .setTitle('NeuraCode AI API')
