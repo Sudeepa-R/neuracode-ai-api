@@ -4,7 +4,7 @@ import { config } from 'dotenv';
 import { Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import rateLimit from 'express-rate-limit';
-import * as compression from 'compression';
+import compression from 'compression';
 config();
 
 async function bootstrap() {
