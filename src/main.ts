@@ -4,7 +4,7 @@ import { config } from 'dotenv';
 import { Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import rateLimit from 'express-rate-limit';
-import bodyParser from 'body-parser';
+import * as bodyParser from 'body-parser';
 const compression = require('compression');
 config();
 
