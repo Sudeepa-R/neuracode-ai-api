@@ -6,6 +6,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import rateLimit from 'express-rate-limit';
 import * as bodyParser from 'body-parser';
 const compression = require('compression');
+import * as chalk from 'chalk';
 config();
 
 async function bootstrap() {
@@ -79,7 +80,11 @@ async function bootstrap() {
 
     const PORT = process.env.PORT;
     await app.listen(PORT ?? 3000);
-    Logger.log(` 🚀 Server running at http://localhost:${PORT}`);
+    const mongoDbName = chalk.hex('#87e8de').bold(process.env.MONGODB_NAME);
+    Logger.log(` MongoDb ${mongoDbName} connected!!`);
+    Logger.log(
+      ` 🚀 Server running at ${chalk.hex('#87e8de').bold(`http://localhost:${PORT}`)} `,
+    );
   } catch (err) {
     Logger.error(`❌ Error starting server : ${err}`, '', 'Boostrap', false);
     process.exit(1);
