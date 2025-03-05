@@ -4,6 +4,7 @@ import { config } from 'dotenv';
 import { Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import rateLimit from 'express-rate-limit';
+import bodyParser from 'body-parser';
 const compression = require('compression');
 config();
 
@@ -23,6 +24,15 @@ async function bootstrap() {
       compression({
         threshold: 1024, // Compress responses only if size > 1KB
         level: 6, // Compression level (0-9, higher means better compression)
+      }),
+    );
+
+    app.use(bodyParser.json({ limit: '50mb' }));
+    app.use(
+      bodyParser.urlencoded({
+        limit: '50mb',
+        extended: true,
+        parameterLimit: 5000,
       }),
     );
 
