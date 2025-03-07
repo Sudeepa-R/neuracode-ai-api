@@ -5,7 +5,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, SortOrder } from 'mongoose';
 import { UsersDetails } from './userDetails.entity';
 import { Paginated, PaginateQuery } from 'nestjs-paginate';
-import { createFilterQuery } from 'src/utils/mongoose-helper.ts/mongoose-helper';
+import { createFilterQuery } from 'src/utils/mongoose-helper/mongoose-helper';
+
 
 @Injectable()
 export class AuthService {
