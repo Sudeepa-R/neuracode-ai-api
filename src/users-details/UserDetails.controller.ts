@@ -13,7 +13,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Model } from 'mongoose';
-import { JwtAuthGuard } from 'src/auth-login/jwt-auth.gurads';
+import { JwtAuthGuard } from '../auth-login/jwt-auth.gurads';
 import { UserDetailsServise } from './UserDetails.services';
 import { UsersDetails } from './userDetails.entity';
 import { Paginate, Paginated, PaginateQuery } from 'nestjs-paginate';
