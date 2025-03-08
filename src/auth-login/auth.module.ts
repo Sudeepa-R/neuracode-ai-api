@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { config } from 'dotenv';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserDetailsSchema, UsersDetails } from './userDetails.entity';
+import { UserDetailsSchema, UsersDetails } from '../users-details/userDetails.entity';
 config();
 
 @Module({

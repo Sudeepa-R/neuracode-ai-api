@@ -12,7 +12,7 @@ config();
 async function bootstrap() {
   try {
     const app = await NestFactory.create(AppModule);
-
+    
     app.use(
       rateLimit({
         windowMs: 1000, // 1 second
