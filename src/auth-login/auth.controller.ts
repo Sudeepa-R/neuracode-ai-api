@@ -38,8 +38,14 @@ export class AuthController {
     status: 200,
     description: 'List of employees retrieved successfully',
   })
-  async login(@Body() user: { userName: string; password: string }) {
-    return this.authService.login(user);
+  async login(@Body() user:userAuthVm) {
+    try{
+      return this.authService.login(user);
+    }
+    catch(err){
+      throw new HttpException(err.message,err.statusCode||HttpStatus.BAD_REQUEST)
+    }
+   
   }
 
 }

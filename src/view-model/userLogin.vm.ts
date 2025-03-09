@@ -2,14 +2,14 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class userAuthVm {
   @ApiProperty({
-    description: 'UserName',
+    description: 'User Email',
     example: 'admin@neuracode.ai',
     nullable: false,
   })
-  userName: string;
+  userEmail: string;
 
   @ApiProperty({
-    description: 'UserName',
+    description: 'User Password',
     example: 'Admin@123',
     nullable: false,
   })

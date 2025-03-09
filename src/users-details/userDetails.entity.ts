@@ -21,7 +21,7 @@ export class UsersDetails {
   @Prop({ required: true, type: String, unique: true })
   userEmail: string;
 
-  @Prop({ required: true, type: Number, unique: false })
+  @Prop({ type: Number, unique: true })
   userPhoneNumber: number;
 
   @Prop({ required: true, type: String, unique: true })

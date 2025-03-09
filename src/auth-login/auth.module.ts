@@ -7,6 +7,7 @@ import { AuthController } from './auth.controller';
 import { config } from 'dotenv';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserDetailsSchema, UsersDetails } from '../users-details/userDetails.entity';
+import { UserDetailsServise } from 'src/users-details/UserDetails.services';
 config();
 
 @Module({
@@ -18,7 +19,7 @@ config();
       signOptions: { expiresIn: process.env.EXPIRY_TIME || '30m' },
     }),
   ],
-  providers: [JwtStrategy, AuthService],
+  providers: [JwtStrategy, AuthService, UserDetailsServise],
   controllers: [AuthController],
   exports: [AuthService],
 })
