@@ -22,7 +22,7 @@ import { userAuthVm } from '../view-model/userLogin.vm';
 import { UsersDetails } from '../users-details/userDetails.entity';
 import { Paginate, Paginated, PaginateQuery } from 'nestjs-paginate';
 import { query } from 'express';
-import { CustomResponse } from 'src/utils/response-structure';
+import { CustomResponse } from '../utils/response-structure';
 import { JwtAuthGuard } from './jwt-auth.gurads';
 import { AuthGuard } from '@nestjs/passport';
 

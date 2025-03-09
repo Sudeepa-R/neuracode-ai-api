@@ -15,7 +15,7 @@ config();
     MongooseModule.forFeature([{name: UsersDetails.name, schema:UserDetailsSchema}]),
     JwtModule.register({
       secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '30m' },
+      signOptions: { expiresIn: process.env.EXPIRY_TIME || '30m' },
     }),
   ],
   providers: [JwtStrategy, AuthService],
