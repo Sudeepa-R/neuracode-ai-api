@@ -1,3 +1,4 @@
+import { NotFoundException } from "@nestjs/common";
 import { FilterQuery } from "mongoose";
 
 type FilterQueryKeys<T>=keyof FilterQuery<T>;
@@ -46,4 +47,9 @@ export function createFilterQuery<T>(filter:{[column:string]:string|string[]}):F
         }
     }
     return filterQuery
+}
+
+export function autoIncrementIds(data: Record<string, any>[], idName: string): number {
+    const lastEntry = data.at(-1); 
+    return lastEntry ? lastEntry[idName] + 1 : 1000;
 }

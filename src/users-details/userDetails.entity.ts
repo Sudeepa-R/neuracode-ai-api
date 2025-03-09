@@ -28,6 +28,4 @@ export class UsersDetails {
   password: string;
 }
 
-export const UserDetailsSchema = SchemaFactory.createForClass(
-  UsersDetails,
-).index({ userEmail: 1 }, { unique: true });
+export const UserDetailsSchema = SchemaFactory.createForClass(UsersDetails);
