@@ -6,6 +6,7 @@ import { Paginated, PaginateQuery } from 'nestjs-paginate';
 import { autoIncrementIds, createFilterQuery } from '../utils/mongoDB-helper/mongoose-helper';
 import { UsersDetailsVm, UsersSaveDataVm } from '../view-model/user-details/user-details.vm';
 import { generatePassword } from '../utils/helper-functions';
+import * as bcrypt from 'bcrypt';
 
 
 @Injectable()
@@ -21,7 +22,7 @@ export class UserDetailsServise {
     }
     const data = await this.usersDetails.findOne({ userEmail: email });
     if (!data) {
-      throw new NotFoundException(`User not found for the email :${email}`);
+      throw new NotFoundException(`User not found for the email: ${email}`);
     }
     return data;
   }
@@ -31,8 +32,14 @@ export class UserDetailsServise {
       throw new HttpException('Empty Data', HttpStatus.BAD_REQUEST);
     }
     const data= await this.usersDetails.find()
+    const isuserExist=await this.usersDetails.findOne({userEmail:usersData.userEmail})
+    if(isuserExist){
+      throw new HttpException('Email already exists', HttpStatus.BAD_REQUEST);
+    }
     usersData.userId=autoIncrementIds(data,'userId')
-    usersData['password']=generatePassword()
+    const randomPass=generatePassword();
+    const encryptedPass= await bcrypt.hash(randomPass,10)
+    usersData['password']=encryptedPass;
     return await this.usersDetails.create(usersData)
   }
 
@@ -42,7 +49,7 @@ export class UserDetailsServise {
     }
     const data=await this.usersDetails.findOneAndDelete({userId:userId})
     if(!data){
-      throw new NotFoundException(`User not found for th userId :${userId}`)
+      throw new NotFoundException(`User not found for the userId :${userId}`)
     }
     return {message:'User deleted successfully.',statuseCode: HttpStatus.OK}
   }
