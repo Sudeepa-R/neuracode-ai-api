@@ -1,10 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, SortOrder } from 'mongoose';
 import { UsersDetails } from './userDetails.entity';
 import { Paginated, PaginateQuery } from 'nestjs-paginate';
-import { createFilterQuery } from '../utils/mongoDB-helper/mongoose-helper';
-import { UsersDetailsVm } from '../view-model/user-details/user-details.vm';
+import { autoIncrementIds, createFilterQuery } from '../utils/mongoDB-helper/mongoose-helper';
+import { UsersDetailsVm, UsersSaveDataVm } from '../view-model/user-details/user-details.vm';
+import { generatePassword } from '../utils/helper-functions';
 
 
 @Injectable()
@@ -25,7 +26,40 @@ export class UserDetailsServise {
     return data;
   }
 
-  // async saveUser()
+  async saveUser(usersData:UsersSaveDataVm):Promise<UsersDetails>{
+    if(!usersData){
+      throw new HttpException('Empty Data', HttpStatus.BAD_REQUEST);
+    }
+    const data= await this.usersDetails.find()
+    usersData.userId=autoIncrementIds(data,'userId')
+    usersData['password']=generatePassword()
+    return await this.usersDetails.create(usersData)
+  }
+
+  async deleteUser(userId:number){
+    if(!userId){
+      throw new HttpException(`Invalid user id: ${userId}`,HttpStatus.BAD_REQUEST)
+    }
+    const data=await this.usersDetails.findOneAndDelete({userId:userId})
+    if(!data){
+      throw new NotFoundException(`User not found for th userId :${userId}`)
+    }
+    return {message:'User deleted successfully.',statuseCode: HttpStatus.OK}
+  }
+
+  async updateUsersDetails(userData:UsersDetailsVm){
+    if(!userData.userEmail){
+      throw new HttpException(`Invalid user Email id: ${userData.userEmail}`,HttpStatus.BAD_REQUEST)
+    }
+    const data=await this.usersDetails.findOneAndUpdate(userData)
+    const result={
+      data:data,
+      status:'success',
+      message:"User updated successfully!"
+    }
+    return result
+
+  }
 
   async getAllUsers(query: PaginateQuery): Promise<Paginated<UsersDetails>> {
     const filter = createFilterQuery<UsersDetails>(query.filter);
