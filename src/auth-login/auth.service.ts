@@ -1,4 +1,9 @@
-import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { userAuthVm } from '../view-model/userLogin.vm';
 import { InjectModel } from '@nestjs/mongoose';
@@ -15,10 +20,12 @@ export class AuthService {
     private jwtService: JwtService,
     @InjectModel('UsersDetails')
     private readonly usersDetails: Model<UsersDetails>,
-    private readonly userDeatilsService:UserDetailsServise
+    private readonly userDeatilsService: UserDetailsServise,
   ) {}
 
   async login(user: userAuthVm) {
+
+    try{
     if(!user){
       throw new HttpException("Invalid credentials",HttpStatus.BAD_REQUEST)
     }
@@ -32,6 +39,10 @@ export class AuthService {
       statusCode:HttpStatus.OK,
       message:"Users authorized successfully."
     };
+  }
+  catch(err){
+    throw err
+  }
   }
 
   
