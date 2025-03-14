@@ -12,6 +12,12 @@ config();
 async function bootstrap() {
   try {
     const app = await NestFactory.create(AppModule);
+
+    app.enableCors({
+      origin:'*',
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+      credentials: true,  
+    })
     
     app.use(
       rateLimit({
