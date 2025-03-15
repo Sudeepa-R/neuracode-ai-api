@@ -34,10 +34,11 @@ export class AuthService {
       throw new HttpException("Either password or username is wrong!",HttpStatus.BAD_REQUEST)
     }
     return {
+      user:UserExist,
       access_token: this.jwtService.sign({UserExist}),
       status:true,
       statusCode:HttpStatus.OK,
-      message:"Users authorized successfully."
+      message:"User authorized successfully."
     };
   }
   catch(err){
