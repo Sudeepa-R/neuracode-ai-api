@@ -20,7 +20,7 @@ import {
 import { AppMenuService } from './app-menu.service';
 import { JwtAuthGuard } from 'src/auth-login/jwt-auth.gurads';
 import { AppMenus } from './app-menu.entity';
-import { AppMenusVm } from 'src/view-model/app-menus/app-menus.vm';
+import { AppMenusVm } from '../view-model/app-menus/app-menus.vm';
 
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()

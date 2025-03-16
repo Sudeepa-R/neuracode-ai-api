@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { AppMenus } from './app-menu.entity';
-import { AppMenusVm } from 'src/view-model/app-menus/app-menus.vm';
+import { AppMenusVm } from '../view-model/app-menus/app-menus.vm';
 import { Model } from 'mongoose';
 import { autoIncrementIds } from 'src/utils/mongoDB-helper/mongoose-helper';
 
