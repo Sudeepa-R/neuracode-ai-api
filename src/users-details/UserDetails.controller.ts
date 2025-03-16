@@ -17,7 +17,6 @@ import {
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
-import { Model } from 'mongoose';
 import { JwtAuthGuard } from '../auth-login/jwt-auth.gurads';
 import { UserDetailsServise } from './UserDetails.services';
 import { UsersDetails } from './userDetails.entity';
@@ -107,7 +106,7 @@ export class UserDetailsController {
     summary: 'Delete users details.',
   })
   @ApiOkResponse({
-    description: 'Users data delted successfully.', 
+    description: 'Users data deleted successfully.', 
     type: UsersDetails,
   })
   async deleteUsersDetails(@Param('userId') userId:number){
