@@ -15,6 +15,13 @@ export class UsersSaveDataVm{
     nullable: false,
   })
   userName: string;
+
+  @ApiProperty({
+    description: 'userName',
+    example: 'user',
+    nullable: false,
+  })
+  role: string;
   
   @ApiProperty({
     description: 'userEmail',
