@@ -44,7 +44,21 @@ export class AppMenusControllers {
       throw new HttpException(err.message, err.statuseCode);
     }
   }
-
+  @Get('getById/:menuId')
+  @ApiOperation({
+    summary: 'find the App Menus by menuId',
+  })
+  @ApiOkResponse({
+    description: 'App menus fetched!!',
+    type: AppMenus,
+  })
+  async getBymenuId(@Param('menuId') menuId: number): Promise<AppMenusVm> {
+    try {
+      return await this.appMenusService.getById(menuId);
+    } catch (err) {
+      throw new HttpException(err.message, err.statuseCode);
+    }
+  }
   @Post()
   @ApiOperation({
     summary: 'Save all the App Menus',
