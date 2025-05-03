@@ -14,7 +14,7 @@ export class AppMenus {
   menuId: number;
 
   @Prop({ required: true, type: String, unique: false })
-  menu: string;
+  menuTitle: string;
 
   @Prop({ required: true, type: String, unique: false })
   navigateTo: string;

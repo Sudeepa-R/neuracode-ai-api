@@ -13,7 +13,7 @@ export class AppMenusVm {
     example: '',
     nullable: false,
   })
-  menu: string;
+  menuTitle: string;
 
   @ApiProperty({
     description: 'navigateTo',
