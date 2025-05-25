@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ProgrammingLanguages } from './programmingLanguages.entity';
 import { Model, SortOrder } from 'mongoose';
-import { ProgrammingLanguagesVM } from 'src/view-model/ProgrammingLanguagesVM/ProgrammingLanguages.vm';
+import { ProgrammingLanguagesVM } from '../view-model/ProgrammingLanguagesVM/ProgrammingLanguages.vm';
 import {
   autoIncrementIds,
   createFilterQuery,

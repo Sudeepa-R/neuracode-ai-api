@@ -17,7 +17,7 @@ import {
 import { JwtAuthGuard } from 'src/auth-login/jwt-auth.gurads';
 import { ProgrammingLanguagesServices } from './programmingLanguages.service';
 import { ProgrammingLanguages } from './programmingLanguages.entity';
-import { ProgrammingLanguagesVM } from 'src/view-model/ProgrammingLanguagesVM/ProgrammingLanguages.vm';
+import { ProgrammingLanguagesVM } from '../view-model/ProgrammingLanguagesVM/ProgrammingLanguages.vm';
 import { Paginate, Paginated, PaginateQuery } from 'nestjs-paginate';
 
 @UseGuards(JwtAuthGuard)
