@@ -21,7 +21,7 @@ export class ProgrammingLanguagesServices {
   ): Promise<Paginated<ProgrammingLanguages>> {
     const filter = createFilterQuery<ProgrammingLanguages>(query.filter);
     const page = query.page || 1;
-    const limit = query.limit || 10;
+    const limit = query.limit || 100;
     const skip = (page - 1) * limit;
 
     const sortBy = query.sortBy?.reduce(
